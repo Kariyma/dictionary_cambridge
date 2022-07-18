@@ -25,7 +25,7 @@ word - слова для поиска, обязательный
 Произношение слова dorm c акцентом UK загружено в файл dorm_uk.mp3
 
 общежитие
-####python main.py dorm -m
+#### python main.py dorm -m
 
 /dɔːm/
 Произношение слова dorm c акцентом UK загружено в файл dorm_uk.mp3
