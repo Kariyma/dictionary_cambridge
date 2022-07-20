@@ -71,11 +71,12 @@ class Word:
         if self.found:
             soup = BeautifulSoup(content, 'lxml')
             for tag in self.pronunciations.keys():
-                tran = soup.select(f"span.{tag}.dpron-i > span.pron.dpron > span")
-                self.pronunciations[tag]['tran'] = tran[0].text if tran else None
-                file = soup.select(f'span.{tag} amp-audio > source:nth-child(2)')
-                self.pronunciations[tag]['file'] = file[0].attrs['src'] if file else None
-                self.pronunciations[tag]['file_content'] = self.get_file(tag)
+                if soup.select(f"span.{tag}"):
+                    tran = soup.select(f"span.{tag}.dpron-i > span.pron.dpron > span")
+                    self.pronunciations[tag]['tran'] = tran[0].text if tran else None
+                    file = soup.select(f'span.{tag} amp-audio > source:nth-child(2)')
+                    self.pronunciations[tag]['file'] = file[0].attrs['src'] if file else None
+                    self.pronunciations[tag]['file_content'] = self.get_file(tag)
             if self.more:
                 descriptions = soup.select('#page-content div.ddef_h > div')
                 self.description = [{'en': description.text, 'ru': translate(description.text)}

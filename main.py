@@ -17,6 +17,14 @@ def main(find: str, lng: str, more: bool):
     word = Word(find, more)
     if not word.found:
         return False
+    lng_dict = word.pronunciations.get(lng, None)
+    if lng_dict:
+        if not lng_dict.get('tran', None):
+            print(f"Произношение {lng} для слова {find} не найдено.")
+            return False
+    else:
+        print(f"Произношение {lng} не поддерживается.")
+        return False
     for key in word.pronunciations.keys():
         print_it = True if not lng or key == lng else False
         if print_it:
