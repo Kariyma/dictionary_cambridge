@@ -30,7 +30,7 @@ def main(find: str, lng: str, more: bool):
         if print_it:
             print(f"/{word.pronunciations[key]['tran']}/")
             save_file(word.pronunciations[key]['file_content'],
-                                  word.word['en'], key)
+                      word.word['en'], key)
     if more:
         for description in word.description:
             print(description['en'])
@@ -44,13 +44,11 @@ def main(find: str, lng: str, more: bool):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('word', type=str, help="Слово для озвучивания")
-    parser.add_argument('-p', '--pronounce', type=str,
-                        help="Акцент озвучивания, по умолчанию Бритаский (uk)",
-                        choices=['uk', 'us'], default=config.DEFAULT_PRONUNCIATION)
+    parser.add_argument(
+        '-p', '--pronounce', type=str,
+        help="Акцент озвучивания, по умолчанию Бритаский (uk)",
+        choices=['uk', 'us'], default=config.DEFAULT_PRONUNCIATION)
     parser.add_argument('-m', '--more', help="Выводить ли значения",
                         action='store_true')
     arguments = parser.parse_args()
     main(arguments.word, arguments.pronounce, arguments.more)
-
-
-

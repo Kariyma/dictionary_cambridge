@@ -19,9 +19,9 @@ class Word:
     pronunciations = {'uk': {'tran': None,
                              'file': None,
                              'file_content': None},
-                     'us': {'tran': None,
-                            'file': None,
-                            'file_content': None},
+                      'us': {'tran': None,
+                             'file': None,
+                             'file_content': None},
                       }
     # description = {'en': None, 'ru': None}
     description = []
@@ -81,7 +81,3 @@ class Word:
                 descriptions = soup.select('#page-content div.ddef_h > div')
                 self.description = [{'en': description.text, 'ru': translate(description.text)}
                                     for description in descriptions]
-            # self.word['ru'] = translate(self.word['en'])
-
-# '#page-content > div.page > div:nth-child(1) > div.link > div > div.di-body > div > div > div > div.pos-body > div:nth-child(1) > div.sense-body.dsense_b > div.def-block.ddef_block > div.ddef_h > div'
-# selector1 = "#page-content div.ddef_h > div"
