@@ -1,0 +1,4 @@
+environs~=9.5.0
+requests~=2.27.1
+beautifulsoup4~=4.10.0
+googletrans~=4.0.0rc1
