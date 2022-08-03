@@ -20,7 +20,7 @@ def save_file(file_name, word, lng):
     with open(filename, 'wb') as output_file:
         output_file.write(file_name)
     message = 'Произношение слова {0} c акцентом {1} загружено в файл {2}'
-    logging.info(message.format(word, lng.upper()))
+    logging.info(message.format(word, lng.upper(), filename))
 
 
 def check_pronunciation(word: Word, lng: str) -> bool:

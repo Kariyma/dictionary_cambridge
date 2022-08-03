@@ -30,7 +30,7 @@ def translate(string: str) -> str:
     """
     translator = Translator()
     return translator.translate(
-        string, src=Language.english, dest=Language.russian,
+        string, src=Language.english.value, dest=Language.russian.value,
     ).text
 
 
@@ -52,7 +52,10 @@ class Word(object):
         },
     }
     error = None
-    word = {Language.english: '', Language.russian: ''}
+    word = {
+        Language.english.value: '',
+        Language.russian.value: '',
+    }
 
     def __init__(self, word: str, more: bool = False):
         """Class for get voicing and pronunciation form word.
@@ -61,9 +64,9 @@ class Word(object):
             word: word to search
             more: flag to get or not description
         """
-        self.word[Language.english] = word
-        self.word[Language.russian] = translate(
-            str(self.word[Language.english]),
+        self.word[Language.english.value] = word
+        self.word[Language.russian.value] = translate(
+            str(self.word[Language.english.value]),
         )
         self.more = more
         self.found = False
@@ -77,7 +80,10 @@ class Word(object):
             str: response
         """
         session = requests.Session()
-        url = '{0}{1}'.format(self.root_url, self.word[Language.english])
+        url = '{0}{1}'.format(
+            self.root_url,
+            self.word[Language.english.value],
+        )
 
         try:
             response = session.get(url=url, headers=self.headers)
@@ -157,7 +163,7 @@ class Word(object):
             descriptions = soup.select('#page-content div.ddef_h > div')
             self.description = [
                 {
-                    Language.english: description.text,
-                    Language.russian: translate(description.text),
+                    Language.english.value: description.text,
+                    Language.russian.value: translate(description.text),
                 } for description in descriptions
             ]
